@@ -1,0 +1,17 @@
+{
+    "name": "pressbooks/mix",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pressbooks (Book Oven Inc.)",
+            "email": "code@pressbooks.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+      "files": [
+        "mix.php"
+      ]
+    }
+}

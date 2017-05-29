@@ -8,7 +8,7 @@ class Assets {
 		self::$pluginSlug = $slug;
 	}
 
-	public function getPath( $path, $dist_dir = 'dist' ) {
+	public function getPath( $path, $dist_dirname = 'dist' ) {
 		static $manifest;
 
 		if ( substr( $path, 0, 1 ) === '/' ) {
@@ -22,20 +22,20 @@ class Assets {
 		}
 
 		if ( ! $manifest ) {
-			$manifest_path = $root_dir . trailingslashit( self::$pluginSlug ) . $dist_path . '/mix-manifest.json';
+			$manifest_path = $root_dir . trailingslashit( self::$pluginSlug ) . $dist_dirname . '/mix-manifest.json';
 
 			if ( ! file_exists( $manifest_path ) ) {
-				return plugins_url( trailingslashit( self::$pluginSlug ) . trailingslashit( $dist_path ) . $path );
+				return plugins_url( trailingslashit( self::$pluginSlug ) . trailingslashit( $dist_dirname ) . $path );
 			}
 
 			$manifest = json_decode( file_get_contents( $manifest_path ), true );
 		}
 
 		if ( ! array_key_exists( $path, $manifest ) ) {
-			return plugins_url( trailingslashit( self::$pluginSlug ) . trailingslashit( $dist_path ) . $path );
+			return plugins_url( trailingslashit( self::$pluginSlug ) . trailingslashit( $dist_dirname ) . $path );
 		}
 
-		return plugins_url( trailingslashit( self::$pluginSlug ) . trailingslashit( $dist_path ) . $manifest[ $path ] );
+		return plugins_url( trailingslashit( self::$pluginSlug ) . trailingslashit( $dist_dirname ) . $manifest[ $path ] );
 
 	}
 }

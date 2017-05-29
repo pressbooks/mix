@@ -11,7 +11,7 @@ class Assets {
 	public function getPath( $path, $dist_dirname = 'dist' ) {
 		static $manifest;
 
-    if ( substr( $path, 0, 1 ) !== '/' ) {
+		if ( substr( $path, 0, 1 ) !== '/' ) {
 			$path = "/{$path}";
 		}
 

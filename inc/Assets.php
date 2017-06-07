@@ -51,7 +51,7 @@ class Assets {
 		if ( self::$type === 'plugin ' ) {
 			  $root_dir = trailingslashit( WP_PLUGIN_DIR );
 		} elseif ( self::$type === 'theme' ) {
-			  $root_dir = trailingslashit( get_theme_root() );
+			  $root_dir = trailingslashit( get_theme_root( self::$slug ) );
 		}
 
 		if ( ! $manifest ) {

@@ -3,11 +3,18 @@ namespace PressbooksMix;
 
 class Assets {
 	/**
-   * The plugin slug.
+   * The plugin or theme slug.
    *
    * @type string
    */
-	public static $pluginSlug;
+	public static $slug;
+
+	/**
+   * The type of component (plugin | theme).
+   *
+   * @type string
+   */
+	public static $type;
 
 	/**
    * The directory within the plugin where built assets are located.
@@ -22,8 +29,9 @@ class Assets {
    * @param string $plugin_slug
    * @param string $dist_directory
    */
-	public function __construct( $plugin_slug, $dist_directory = 'dist' ) {
-		self::$pluginSlug = $plugin_slug;
+	public function __construct( $slug, $type = 'plugin', $dist_directory = 'dist' ) {
+		self::$slug = $slug;
+		self::$type = $type;
 		self::$distDirectory = $dist_directory;
 	}
 
@@ -40,22 +48,38 @@ class Assets {
 			$path = "/{$path}";
 		}
 
-		$root_dir = trailingslashit( WP_PLUGIN_DIR );
+		if ( self::$type === 'plugin ' ) {
+			  $root_dir = trailingslashit( WP_PLUGIN_DIR );
+		} elseif ( self::$type === 'theme' ) {
+			  $root_dir = trailingslashit( get_theme_root() );
+		}
 
 		if ( ! $manifest ) {
-			$manifest_path = $root_dir . trailingslashit( self::$pluginSlug ) . self::$distDirectory . '/mix-manifest.json';
+			$manifest_path = $root_dir . trailingslashit( self::$slug ) . self::$distDirectory . '/mix-manifest.json';
 
 			if ( ! file_exists( $manifest_path ) ) {
-				return plugins_url( trailingslashit( self::$pluginSlug ) . self::$distDirectory . $path );
+				if ( self::$type === 'plugin ' ) {
+					return plugins_url( trailingslashit( self::$slug ) . self::$distDirectory . $path );
+				} elseif ( self::$type === 'theme' ) {
+					return trailingslashit( get_stylesheet_directory_uri() ) . self::$distDirectory . $path;
+				}
 			}
 
 			$manifest = json_decode( file_get_contents( $manifest_path ), true );
 		}
 
 		if ( ! array_key_exists( $path, $manifest ) ) {
-			return plugins_url( trailingslashit( self::$pluginSlug ) . self::$distDirectory . $path );
+			if ( self::$type === 'plugin ' ) {
+				 return plugins_url( trailingslashit( self::$slug ) . self::$distDirectory . $path );
+			} elseif ( self::$type === 'theme' ) {
+				return trailingslashit( get_stylesheet_directory_uri() ) . self::$distDirectory . $path;
+			}
 		}
 
-		return plugins_url( trailingslashit( self::$pluginSlug ) . self::$distDirectory . $manifest[ $path ] );
+		if ( self::$type === 'plugin ' ) {
+			  return plugins_url( trailingslashit( self::$slug ) . self::$distDirectory . $manifest[ $path ] );
+		} elseif ( self::$type === 'theme' ) {
+			return trailingslashit( get_stylesheet_directory_uri() ) . self::$distDirectory . $manifest[ $path ];
+		}
 	}
 }

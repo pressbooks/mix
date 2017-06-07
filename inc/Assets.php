@@ -61,7 +61,7 @@ class Assets {
 				if ( self::$type === 'plugin ' ) {
 					return plugins_url( trailingslashit( self::$slug ) . self::$distDirectory . $path );
 				} elseif ( self::$type === 'theme' ) {
-					return trailingslashit( get_stylesheet_directory_uri() ) . self::$distDirectory . $path;
+					return trailingslashit( get_template_directory_uri() ) . self::$distDirectory . $path;
 				}
 			}
 
@@ -72,14 +72,14 @@ class Assets {
 			if ( self::$type === 'plugin ' ) {
 				 return plugins_url( trailingslashit( self::$slug ) . self::$distDirectory . $path );
 			} elseif ( self::$type === 'theme' ) {
-				return trailingslashit( get_stylesheet_directory_uri() ) . self::$distDirectory . $path;
+				return trailingslashit( get_template_directory_uri() ) . self::$distDirectory . $path;
 			}
 		}
 
 		if ( self::$type === 'plugin ' ) {
 			  return plugins_url( trailingslashit( self::$slug ) . self::$distDirectory . $manifest[ $path ] );
 		} elseif ( self::$type === 'theme' ) {
-			return trailingslashit( get_stylesheet_directory_uri() ) . self::$distDirectory . $manifest[ $path ];
+			return trailingslashit( get_template_directory_uri() ) . self::$distDirectory . $manifest[ $path ];
 		}
 	}
 }

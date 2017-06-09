@@ -49,7 +49,7 @@ class Assets {
 			$path = "/{$path}";
 		}
 
-		if ( self::$type === 'plugin ' ) {
+		if ( self::$type === 'plugin' ) {
 			  $root_dir = trailingslashit( WP_PLUGIN_DIR );
 		} elseif ( self::$type === 'theme' ) {
 			  $root_dir = trailingslashit( get_theme_root( self::$slug ) );
@@ -59,7 +59,7 @@ class Assets {
 			$manifest_path = $root_dir . trailingslashit( self::$slug ) . self::$distDirectory . '/mix-manifest.json';
 
 			if ( ! file_exists( $manifest_path ) ) {
-				if ( self::$type === 'plugin ' ) {
+				if ( self::$type === 'plugin' ) {
 					return plugins_url( trailingslashit( self::$slug ) . self::$distDirectory . $path );
 				} elseif ( self::$type === 'theme' ) {
 					return trailingslashit( get_template_directory_uri() ) . self::$distDirectory . $path;
@@ -70,14 +70,14 @@ class Assets {
 		}
 
 		if ( ! array_key_exists( $path, $manifest ) ) {
-			if ( self::$type === 'plugin ' ) {
+			if ( self::$type === 'plugin' ) {
 				 return plugins_url( trailingslashit( self::$slug ) . self::$distDirectory . $path );
 			} elseif ( self::$type === 'theme' ) {
 				return trailingslashit( get_template_directory_uri() ) . self::$distDirectory . $path;
 			}
 		}
 
-		if ( self::$type === 'plugin ' ) {
+		if ( self::$type === 'plugin' ) {
 			  return plugins_url( trailingslashit( self::$slug ) . self::$distDirectory . $manifest[ $path ] );
 		} elseif ( self::$type === 'theme' ) {
 			return trailingslashit( get_template_directory_uri() ) . self::$distDirectory . $manifest[ $path ];

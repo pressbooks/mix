@@ -28,8 +28,9 @@ class Assets {
    *
    * @param string $plugin_slug
    * @param string $dist_directory
+   * @param string $type
    */
-	public function __construct( $slug, $type = 'plugin', $dist_directory = 'dist' ) {
+	public function __construct( $slug, $dist_directory = 'dist', $type = 'plugin' ) {
 		self::$slug = $slug;
 		self::$type = $type;
 		self::$distDirectory = $dist_directory;

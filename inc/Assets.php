@@ -179,7 +179,7 @@ class Assets {
 	public function getThemePath( $path ) {
 
 		$root_dir = trailingslashit( get_theme_root( $this->slug ) );
-		$fallback = trailingslashit( get_template_directory_uri() ) . $this->srcDirectory . $path;
+		$fallback = trailingslashit( get_stylesheet_directory_uri() ) . $this->srcDirectory . $path;
 		$hash = md5( $this->slug . $this->type . $this->distDirectory );
 
 		if ( ! isset( self::$manifest[ $hash ] ) ) {
@@ -196,6 +196,6 @@ class Assets {
 			return $fallback;
 		}
 
-		return trailingslashit( get_template_directory_uri() ) . $this->distDirectory . self::$manifest[ $hash ][ $path ];
+		return trailingslashit( get_stylesheet_directory_uri() ) . $this->distDirectory . self::$manifest[ $hash ][ $path ];
 	}
 }

@@ -10,19 +10,13 @@
   <arg value="p"/>
 
   <!-- Use HM Coding Standards -->
-  <rule ref="vendor/humanmade/coding-standards">
-    <!-- Disable all ESLint checks -->
-    <exclude name="HM.Debug.ESLint"/>
+  <rule ref="vendor/pressbooks/coding-standards">
     <!-- Disable rules Pressbooks disagrees with -->
-    <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid"/>
-    <exclude name="WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase"/>
-    <exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCaseMemberVar"/>
-    <exclude name="WordPress.VIP.SessionVariableUsage"/>
-    <exclude name="WordPress.VIP.SessionFunctionsUsage"/>
-    <!-- Disable LayoutOrder until humanmade/coding-standards#5 is fixed -->
-    <exclude name="HM.Layout.Order.WrongOrder"/>
-    <exclude name="Generic.Files.LowercasedFilename.NotFound"/>
-    <exclude name="HM.Files.ClassFileName"/>
+    <exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase"/>
+    <exclude name="WordPress.NamingConventions.ValidVariableName.PropertyNotSnakeCase"/>
+    <exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase"/>
+    <exclude name="Squiz.Commenting"/>
+    <exclude name="Generic.Commenting.DocComment.MissingShort"/>
   </rule>
 
   <!-- Re-enable rules Pressbooks agrees with -->

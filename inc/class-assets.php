@@ -60,7 +60,7 @@ class Assets {
 	/**
 	 * @param string $slug
 	 *
-	 * @return Assets
+	 * @return assets
 	 */
 	public function setSlug( $slug ) {
 		$this->slug = $slug;
@@ -77,9 +77,8 @@ class Assets {
 	/**
 	 * @param string $type
 	 *
+	 * @return assets
 	 * @throws \Exception
-	 *
-	 * @return Assets
 	 */
 	public function setType( $type ) {
 		if ( ! in_array( $type, [ 'plugin', 'theme' ], true ) ) {
@@ -99,7 +98,7 @@ class Assets {
 	/**
 	 * @param string $srcDirectory
 	 *
-	 * @return Assets
+	 * @return assets
 	 */
 	public function setSrcDirectory( $srcDirectory ) {
 		$this->srcDirectory = $srcDirectory;
@@ -116,7 +115,7 @@ class Assets {
 	/**
 	 * @param string $distDirectory
 	 *
-	 * @return Assets
+	 * @return assets
 	 */
 	public function setDistDirectory( $distDirectory ) {
 		$this->distDirectory = $distDirectory;

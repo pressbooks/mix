@@ -9,7 +9,7 @@
   <!-- Show progress -->
   <arg value="p"/>
 
-  <!-- Use HM Coding Standards -->
+  <!-- Use Pressbooks Coding Standards -->
   <rule ref="vendor/pressbooks/coding-standards">
     <!-- Disable rules Pressbooks disagrees with -->
     <exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase"/>

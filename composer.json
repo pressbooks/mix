@@ -14,7 +14,7 @@
     },
     "autoload": {
       "psr-4": {
-        "PressbooksMix\\": "inc/"
+        "PressbooksMix\\": "inc/class-assets.php"
       }
     },
   "scripts": {

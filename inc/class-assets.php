@@ -60,7 +60,7 @@ class Assets {
 	/**
 	 * @param string $slug
 	 *
-	 * @return Assets
+	 * @return assets
 	 */
 	public function setSlug( $slug ) {
 		$this->slug = $slug;
@@ -77,9 +77,8 @@ class Assets {
 	/**
 	 * @param string $type
 	 *
+	 * @return assets
 	 * @throws \Exception
-	 *
-	 * @return Assets
 	 */
 	public function setType( $type ) {
 		if ( ! in_array( $type, [ 'plugin', 'theme' ], true ) ) {
@@ -99,7 +98,7 @@ class Assets {
 	/**
 	 * @param string $srcDirectory
 	 *
-	 * @return Assets
+	 * @return assets
 	 */
 	public function setSrcDirectory( $srcDirectory ) {
 		$this->srcDirectory = $srcDirectory;
@@ -116,7 +115,7 @@ class Assets {
 	/**
 	 * @param string $distDirectory
 	 *
-	 * @return Assets
+	 * @return assets
 	 */
 	public function setDistDirectory( $distDirectory ) {
 		$this->distDirectory = $distDirectory;
@@ -178,12 +177,13 @@ class Assets {
 	 */
 	public function getThemePath( $path ) {
 
-		$root_dir = trailingslashit( get_theme_root( $this->slug ) );
-		$fallback = trailingslashit( get_template_directory_uri() ) . $this->srcDirectory . $path;
+		$dir = trailingslashit( get_theme_root( $this->slug ) ) . $this->slug;
+		$uri = trailingslashit( get_theme_root_uri( $this->slug ) ) . str_replace( '%2F', '/', rawurlencode( $this->slug ) );
+		$fallback = trailingslashit( $uri ) . $this->srcDirectory . $path;
 		$hash = md5( $this->slug . $this->type . $this->distDirectory );
 
 		if ( ! isset( self::$manifest[ $hash ] ) ) {
-			$manifest_path = $root_dir . trailingslashit( $this->slug ) . $this->distDirectory . '/mix-manifest.json';
+			$manifest_path = trailingslashit( $dir ) . $this->distDirectory . '/mix-manifest.json';
 			if ( ! file_exists( $manifest_path ) ) {
 				self::$manifest[ $hash ] = [];
 				return $fallback;
@@ -196,6 +196,6 @@ class Assets {
 			return $fallback;
 		}
 
-		return trailingslashit( get_template_directory_uri() ) . $this->distDirectory . self::$manifest[ $hash ][ $path ];
+		return trailingslashit( $uri ) . $this->distDirectory . self::$manifest[ $hash ][ $path ];
 	}
 }
